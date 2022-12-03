@@ -18420,6 +18420,10 @@ PrefabInstance:
       propertyPath: leftStick
       value: 
       objectReference: {fileID: 1269829761}
+    - target: {fileID: 8289565885415934296, guid: aaba3fd3cb71786418e5ad9dad147851, type: 3}
+      propertyPath: verticalThreshhold
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 8289565885415934301, guid: aaba3fd3cb71786418e5ad9dad147851, type: 3}
       propertyPath: m_RootOrder
       value: 6
