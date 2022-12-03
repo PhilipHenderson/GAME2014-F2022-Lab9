@@ -15,7 +15,7 @@ public class GameController : MonoBehaviour
 
         onScreenControls.SetActive(Application.isMobilePlatform);
 
-        //FindObjectOfType<SoundManager>().PlayMusic(Sound.MAIN_MUSIC);
+        FindObjectOfType<SoundManager>().PlayMusic(Sound.MAIN_MUSIC);
 
         miniMap = GameObject.Find("MiniMap");
         if (miniMap)
@@ -26,9 +26,9 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
-        if (miniMap  && Input.GetKeyDown(KeyCode.M))
+        if ((miniMap)  && (Input.GetKeyDown(KeyCode.M)))
         {
-                miniMap.SetActive(!miniMap.activeInHierarchy);
+            miniMap.SetActive(!miniMap.activeInHierarchy);
         }
     }
 }
