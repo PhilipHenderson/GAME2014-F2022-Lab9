@@ -19,6 +19,10 @@ public class PlayerBehaviour : MonoBehaviour
     public Animator animator;
     public PlayerAnimationState playerAnimationState;
 
+    [Header("Dust Trail Effect")]
+    public ParticleSystem dustTrail;
+    public Color dustTrailColor;
+
     [Header("Health System")]
     public HealthBarController health;
     public LifeCounterScript life;
@@ -41,6 +45,8 @@ public class PlayerBehaviour : MonoBehaviour
         deathPlane = FindObjectOfType<DeathPlaneController>();
         soundManager = FindObjectOfType<SoundManager>();
         leftStick = (Application.isMobilePlatform) ?  GameObject.Find("Left Stick").GetComponent<Joystick>() : null;
+
+        dustTrail = GetComponentInChildren<ParticleSystem>();
     }
 
     void Update()
@@ -91,12 +97,24 @@ public class PlayerBehaviour : MonoBehaviour
             rb2D.velocity = new Vector2(clampedVelocity, rb2D.velocity.y);
 
             ChangeAnimation(PlayerAnimationState.RUN);
+
+            if (isGrounded)
+            {
+                CreateDustTrail();
+            }
+
         }
 
         if ((isGrounded) && (x == 0.0f))
         {
             ChangeAnimation(PlayerAnimationState.IDLE);
         }
+    }
+
+    private void CreateDustTrail()
+    {
+        dustTrail.GetComponent<Renderer>().material.SetColor("_Color", dustTrailColor);
+        dustTrail.Play();
     }
 
     private void Jump()
